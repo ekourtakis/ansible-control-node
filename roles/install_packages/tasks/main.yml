@@ -3,7 +3,21 @@
   ansible.builtin.apt:
     update_cache: true
 
-- name: Install htop
+- name: Install apt packages
   ansible.builtin.apt:
-    name: htop
+    name:
+      - ansible
+      - htop
+      - tealdeer
+      - vim
     state: present
+
+- name: Install snap packages
+  community.general.snap:
+    name:
+      - code
+      - docker
+      - slack
+    state: present
+    classic: true
+  become: true
