@@ -17,7 +17,7 @@
   ansible.builtin.copy:
     content: |
       # grants passwordless sudo to {{ group }} group
-      %admin ALL=(ALL:ALL) NOPASSWD: ALL
+      %{{ group }} ALL=(ALL:ALL) NOPASSWD: ALL
     dest: "/etc/sudoers.d/90-{{ group }}-nopasswd"
     owner: root
     group: root
