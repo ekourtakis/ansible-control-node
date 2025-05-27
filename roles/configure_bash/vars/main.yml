@@ -1,0 +1,1 @@
+bashrc_path: "/home/{{ ansible_user }}/.bashrc"

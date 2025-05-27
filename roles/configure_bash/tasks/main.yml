@@ -1,0 +1,22 @@
+---
+- name: Set bash history length to 10,000
+  ansible.builtin.lineinfile:
+    path: "{{ bashrc_path }}"
+    regexp: '^export HISTSIZE='
+    line: 'export HISTSIZE=10000'
+    state: present
+    create: true
+    mode: '0644'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Add timestamps to bash history
+  ansible.builtin.lineinfile:
+    path: "{{ bashrc_path }}"
+    regexp: '^export HISTTIMEFORMAT='
+    line: 'export HISTTIMEFORMAT="%F %T "'
+    state: present
+    create: true
+    mode: '0644'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
