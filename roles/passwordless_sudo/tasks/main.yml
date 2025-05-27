@@ -1,24 +1,24 @@
 ---
-- name: Ensure group admin exists
+- name: Ensure group {{ group }} exists
   ansible.builtin.group:
-    name: admin
+    name: "{{ group }}"
     state: present
   become: true
 
-- name: Ensure connecting user is in admin ({{ ansible_user }})
+- name: Ensure {{ ansible_user }} is in {{ group }}
   ansible.builtin.user:
     name: "{{ ansible_user }}"
-    groups: admin
+    groups: "{{ group }}"
     append: true
     state: present
   become: true
 
-- name: Add passwordless sudo rule file for group admin in sudoers.d
+- name: Add passwordless sudo rule file for {{ group }} in sudoers.d
   ansible.builtin.copy:
     content: |
-      # grants passwordless sudo to admin group
+      # grants passwordless sudo to {{ group }} group
       %admin ALL=(ALL:ALL) NOPASSWD: ALL
-    dest: "/etc/sudoers.d/90-admin-nopasswd"
+    dest: "/etc/sudoers.d/90-{{ group }}-nopasswd"
     owner: root
     group: root
     mode: '0440'
