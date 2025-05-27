@@ -1,0 +1,7 @@
+---
+- name: Configure machine for software development
+  hosts: vms
+  become: true
+
+  roles:
+    - install_packages
