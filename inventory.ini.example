@@ -1,0 +1,2 @@
+[vms]
+ubuntu_vm ansible_host={insert vm ip address here} ansible_user={insert vm username here}
